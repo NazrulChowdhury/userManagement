@@ -1,12 +1,6 @@
 const router = require('express').Router()
 const passport = require('passport')
-const authController = require('../controllers/auth.js')
-
-
- router.get('/login',(req,res)=>{
-    res.send('hello from the login controller')
- })
-
+const authController = require('../controllers/auth.controller')
 
 //google auth routes
 router.get(

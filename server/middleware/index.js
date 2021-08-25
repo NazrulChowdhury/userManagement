@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const helmet = require('helmet')
 const morgan = require('morgan')
-const session = require('./session')
-const passport = require('./passport')
+const session = require('./session.middleware')
+const passport = require('./passport.middleware')
 
 
 router.use(express.json())
