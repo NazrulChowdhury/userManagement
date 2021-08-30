@@ -1,18 +1,17 @@
  const router = require('express').Router()
-// const authRoute = require('./auth.route')
-// const userRoute = require('./user.route')
-const authenticate = require('../middleware/auth.middleware')
+ const errorHandler = require('../middleware/errorHandler.middleware')
 
-router.get('',(req,res)=>{
-    res.send('working')
-})
+const authenticate = require('../middleware/authenticate.middleware')
+
+router.get('', require('../controllers/user.controller').createInviteEmail)
 
 //router.use('/auth',authRoute)
 router.use('/auth',require('./auth.route'))
 
 // protected routes..
-//router.use(authenticate)
+router.use(authenticate)
 router.use('/user',require('./user.route'))
+router.use(errorHandler)
 
 module.exports = router 
 

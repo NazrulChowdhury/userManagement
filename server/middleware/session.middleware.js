@@ -9,6 +9,6 @@ module.exports = session({
     cookie :{
         httpOnly: true, // prevents client side js from reading the cookie
         secure: false, // need to be true in production to accept req from https only
-        maxAge: 60*60*24
+        maxAge: 60*1000*60
     }
 })

@@ -1,6 +1,5 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
-const User = require('../model/user')
 const userService = require('../services/user.service')
 require('dotenv').config()
 
@@ -15,13 +14,14 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/redirect'
   }, 
   async(request, accessToken, refreshToken, profile, done)=>{
-    // check if the user already exists
+    // check if the user already exist
     try{
-      const existingUser = await userService.getSocialUser('google',profile._json.sub)
+      const existingUser = await userService.getSocialUserById('google',profile.id)
       if(existingUser){ 
         done(null,existingUser)
         return
       } 
+    // create new user if doesn't already exist
       const newUser = await userService.createSocialUser(profile._json)
       done(null,newUser)
     } catch(err){

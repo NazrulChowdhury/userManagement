@@ -10,10 +10,11 @@ app.use(middlewares)
 // routes
 app.use(router)
 // db connection
-mongoose.connect(
-    process.env.MONGO_URL,
-    {useNewUrlParser:true, useUnifiedTopology:true}
-)
+require('./db/mongoConnection')()
+// mongoose.connect(
+//     process.env.MONGO_URL,
+//     {useNewUrlParser:true, useUnifiedTopology:true}
+// )
 
 app.listen(port,()=>{
     console.log(`server is listening on port ${port}`)

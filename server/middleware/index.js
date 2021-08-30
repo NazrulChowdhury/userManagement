@@ -4,8 +4,9 @@ const helmet = require('helmet')
 const morgan = require('morgan')
 const session = require('./session.middleware')
 const passport = require('./passport.middleware')
+const cors = require('cors')
 
-
+router.use(cors())
 router.use(express.json())
 router.use(helmet())
 router.use(morgan('common'))

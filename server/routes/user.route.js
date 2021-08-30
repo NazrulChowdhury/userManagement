@@ -1,9 +1,7 @@
 const router = require('express').Router()
-const getUser = require('../controllers/user')
+const {createInviteEmail} = require('../controllers/user.controller')
+const authenticate = require('../middleware/authenticate.middleware')
 
-router.get('/test',(req,res)=>{
-
-    res.send('you are now logged in')
-})
+router.get('/inviteUser',createInviteEmail)
 module.exports = router
 

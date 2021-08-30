@@ -1,4 +1,5 @@
 const User = require('../model/user')
+const inviteEmail = require('../model/userInvite.model')
 
 const getSocialUserById = async(platformName,id)=>{
     const query = {}
@@ -8,7 +9,7 @@ const getSocialUserById = async(platformName,id)=>{
 
 const createSocialUser = async(user)=>{
     const { sub, given_name, family_name, email, locale} = user
-    const newUser = await new User({
+        await new User({
         firstName:given_name,     
         lastName: family_name,
         email:email,
@@ -18,9 +19,19 @@ const createSocialUser = async(user)=>{
         locale :locale
     })
     .save()
-    return newUser ? newUser : Promise.reject(new Error('something went wrong!'))
 
 }
-module.exports = {getSocialUserById,createSocialUser}
+
+const createInviteEmail = async(InviteEmail) => {
+    await new inviteEmail({
+        email : InviteEmail
+    }).save()
+}
+const userEmailExist = async(userEmail)=>{
+ return await inviteEmail.findOne({'email':userEmail})
+
+}
+
+module.exports = {getSocialUserById,createSocialUser,createInviteEmail,userEmailExist}
 
 
