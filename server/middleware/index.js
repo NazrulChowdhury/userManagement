@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const helmet = require('helmet')
 const morgan = require('morgan')
-const session = require('./session.middleware')
+const session = require('../db/redis.session')
 const passport = require('./passport.middleware')
 const cors = require('cors')
 
