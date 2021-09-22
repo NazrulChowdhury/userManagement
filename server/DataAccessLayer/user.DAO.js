@@ -9,7 +9,7 @@ const getSocialUserById = async(platformName,id)=>{
 
 const createSocialUser = async(user)=>{
     const { sub, given_name, family_name, email, locale} = user
-        await new User({
+        return await new User({
         firstName:given_name,     
         lastName: family_name,
         email:email,
@@ -23,7 +23,7 @@ const createSocialUser = async(user)=>{
 }
 
 const createInviteEmail = async(InviteEmail) => {
-    await new inviteEmail({
+    return await new inviteEmail({
         email : InviteEmail
     }).save()
 }
